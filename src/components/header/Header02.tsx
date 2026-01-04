@@ -15,10 +15,9 @@ import { cn } from "@/lib/utils";
 import ModeToggle from "../theme/mode-toggle";
 
 const TopMenu = [
-  { name: "Dashboard", href: "/dashboard" },
-  { name: "Dashboar01", href: "/dashboard01" },
-  { name: "Dashboar07", href: "/dashboard07" },
-  { name: "FAQ", href: "#faq" },
+  { id: "dashboard", name: "Dashboard", href: "/dashboard" },
+  { id: "pricing", name: "Pricing", href: "#pricing" },
+  { id: "faq", name: "FAQ", href: "#faq" },
 ];
 
 const Logo = () => {
