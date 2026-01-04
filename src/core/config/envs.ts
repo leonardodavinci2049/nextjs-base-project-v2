@@ -6,6 +6,19 @@ const envsSchema = z.object({
     .transform((val) => parseInt(val, 10))
     .pipe(z.number().positive("PORT must be a positive number")),
 
+  // APP URLs - Variáveis públicas da aplicação
+  NEXT_PUBLIC_APP_URL: z
+    .string()
+    .url("NEXT_PUBLIC_APP_URL must be a valid URL"),
+
+  // External APIs
+  EXTERNAL_API_MAIN_URL: z
+    .string()
+    .url("EXTERNAL_API_MAIN_URL must be a valid URL"),
+  EXTERNAL_API_ASSETS_URL: z
+    .string()
+    .url("EXTERNAL_API_ASSETS_URL must be a valid URL"),
+
   // SYSTEM
   APP_ID: z
     .string()
@@ -58,6 +71,7 @@ const envsSchema = z.object({
     .max(20, "NEXT_PUBLIC_COMPANY_WHATSAPP must have at most 20 characters"),
 
   // Database MySQL
+  DATABASE_URL: z.string().min(1, "DATABASE_URL is required"),
   DATABASE_HOST: z.string().min(1, "DATABASE_HOST is required"),
   DATABASE_PORT: z
     .string()
@@ -66,6 +80,9 @@ const envsSchema = z.object({
   DATABASE_NAME: z.string().min(1, "DATABASE_NAME is required"),
   DATABASE_USER: z.string().min(1, "DATABASE_USER is required"),
   DATABASE_PASSWORD: z.string().min(1, "DATABASE_PASSWORD is required"),
+
+  // Security - API Key
+  API_KEY: z.string().min(1, "API_KEY is required"),
 
   // BETTER_AUTH
   BETTER_AUTH_URL: z.string().url("BETTER_AUTH_URL must be a valid URL"),
@@ -108,6 +125,9 @@ if (typeof window === "undefined") {
   // Estas variáveis NÃO deve ser acessadas no cliente!
   envVars = {
     PORT: 0,
+    NEXT_PUBLIC_APP_URL: "",
+    EXTERNAL_API_MAIN_URL: "",
+    EXTERNAL_API_ASSETS_URL: "",
     APP_ID: 0,
     SYSTEM_CLIENT_ID: 0,
     STORE_ID: 0,
@@ -126,11 +146,13 @@ if (typeof window === "undefined") {
     NEXT_PUBLIC_COMPANY_WHATSAPP:
       process.env.NEXT_PUBLIC_COMPANY_WHATSAPP || "",
     TYPE_BUSINESS: 0,
+    DATABASE_URL: "",
     DATABASE_HOST: "",
     DATABASE_PORT: 0,
     DATABASE_NAME: "",
     DATABASE_USER: "",
     DATABASE_PASSWORD: "",
+    API_KEY: "",
     BETTER_AUTH_URL: "",
     BETTER_AUTH_SECRET: "",
     GITHUB_CLIENT_ID: "",
@@ -145,6 +167,9 @@ if (typeof window === "undefined") {
 
 export const envs = {
   PORT: envVars.PORT,
+  NEXT_PUBLIC_APP_URL: envVars.NEXT_PUBLIC_APP_URL,
+  EXTERNAL_API_MAIN_URL: envVars.EXTERNAL_API_MAIN_URL,
+  EXTERNAL_API_ASSETS_URL: envVars.EXTERNAL_API_ASSETS_URL,
   APP_ID: envVars.APP_ID,
   SYSTEM_CLIENT_ID: envVars.SYSTEM_CLIENT_ID,
   STORE_ID: envVars.STORE_ID,
@@ -163,11 +188,13 @@ export const envs = {
   NEXT_PUBLIC_COMPANY_EMAIL: envVars.NEXT_PUBLIC_COMPANY_EMAIL,
   NEXT_PUBLIC_COMPANY_WHATSAPP: envVars.NEXT_PUBLIC_COMPANY_WHATSAPP,
 
+  DATABASE_URL: envVars.DATABASE_URL,
   DATABASE_HOST: envVars.DATABASE_HOST,
   DATABASE_PORT: envVars.DATABASE_PORT,
   DATABASE_NAME: envVars.DATABASE_NAME,
   DATABASE_USER: envVars.DATABASE_USER,
   DATABASE_PASSWORD: envVars.DATABASE_PASSWORD,
+  API_KEY: envVars.API_KEY,
   BETTER_AUTH_URL: envVars.BETTER_AUTH_URL,
   BETTER_AUTH_SECRET: envVars.BETTER_AUTH_SECRET,
   GITHUB_CLIENT_ID: envVars.GITHUB_CLIENT_ID,
