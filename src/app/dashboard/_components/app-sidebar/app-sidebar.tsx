@@ -29,97 +29,91 @@ import { TeamSwitcher } from "./team-switcher";
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "Comsuporte",
+    email: "mauro@comsuporte.com",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
-      name: "Acme Inc",
+      name: "Caixa Fechada",
       logo: GalleryVerticalEnd,
+      plan: "Distribuidora",
+    },
+    {
+      name: "Mundial Megastore",
+      logo: AudioWaveform,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
+      name: "Atacadão Eletrônico",
       logo: Command,
-      plan: "Free",
+      plan: "Revenda",
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Workstation",
+      url: "/dashboard",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Vendas",
+          url: "/dashboard",
+        },
+        {
+          title: "Orçamentos",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "Carrinho",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
+      title: "Produtos",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Catálogo",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Novos Produtos",
           url: "#",
         },
         {
-          title: "Tutorials",
+          title: "Mais vendidos",
           url: "#",
         },
+      ],
+    },    
+    {
+      title: "Clientes",
+      url: "#",
+      icon: Bot,
+      items: [
         {
-          title: "Changelog",
+          title: "Cadastros",
+          url: "#",
+        },
+  
+        {
+          title: "Novo Cadastro",
           url: "#",
         },
       ],
     },
+
     {
       title: "Relatórios",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "Painel",
+          title: "Resumo dos Pedidos",
           url: "/dashboard/report/panel",
         },
         {
@@ -137,19 +131,36 @@ const data = {
       ],
     },
   ],
-  projects: [
+  projects1: [
     {
-      name: "Design Engineering",
+      name: "Pendências",
       url: "#",
       icon: Frame,
     },
     {
-      name: "Sales & Marketing",
+      name: "CRM",
       url: "#",
       icon: PieChart,
     },
     {
       name: "Travel",
+      url: "#",
+      icon: MapIcon,
+    },
+  ],
+    projects2: [
+    {
+      name: "Organização",
+      url: "#",
+      icon: Frame,
+    },
+    {
+      name: "Usuários",
+      url: "#",
+      icon: PieChart,
+    },
+    {
+      name: "Regras",
       url: "#",
       icon: MapIcon,
     },
@@ -164,7 +175,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavProjects projects={data.projects1} />
+        <NavProjects projects={data.projects2} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -38,7 +38,7 @@ export function NavMain({
 
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>PDV</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
           const hasItems = item.items && item.items.length > 0;
