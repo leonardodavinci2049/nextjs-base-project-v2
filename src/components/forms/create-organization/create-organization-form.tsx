@@ -3,10 +3,9 @@
 import Form from "next/form";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
-
+import { SubmitButton } from "@/components/common/submit-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SubmitButton } from "@/components/ui/submit-button";
 import {
   type CreateOrganizationState,
   createOrganizationAction,

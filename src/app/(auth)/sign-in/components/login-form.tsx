@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
-
+import { SubmitButton } from "@/components/common/submit-button";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,7 +17,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SubmitButton } from "@/components/ui/submit-button";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { type SignInState, signInAction } from "../actions";
@@ -31,8 +30,6 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-
-  
   const lastMethod = authClient.getLastUsedLoginMethod();
   const router = useRouter();
 

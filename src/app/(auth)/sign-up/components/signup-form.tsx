@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect } from "react";
 import { toast } from "sonner";
-
+import { SubmitButton } from "@/components/common/submit-button";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,7 +16,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { SubmitButton } from "@/components/ui/submit-button";
 import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
 import { type SignUpState, signUpAction } from "../actions";
