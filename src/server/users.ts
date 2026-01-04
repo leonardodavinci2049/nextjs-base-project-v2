@@ -29,7 +29,6 @@ export const getCurrentUser = async () => {
 };
 
 export const signIn = async (email: string, password: string) => {
-  console.log("signIn: ", email, password);
   try {
     await auth.api.signInEmail({
       body: {

@@ -3,6 +3,8 @@ import "server-only";
 import { cacheLife, cacheTag } from "next/cache";
 import { createLogger } from "@/core/logger";
 import { CACHE_TAGS } from "@/lib/cache-config";
+import { CategoryServiceApi } from "@/services/api-main/category/category-service-api";
+import { ProductWebServiceApi } from "@/services/api-main/product/product-service-api";
 import {
   type CategoryLookupResult,
   findCategoryBySlug,
@@ -12,9 +14,7 @@ import {
   transformRelatedProducts,
   type UICategory,
   type UIProduct,
-} from "@/lib/transformers";
-import { CategoryServiceApi } from "@/services/api-main/category/category-service-api";
-import { ProductWebServiceApi } from "@/services/api-main/product/product-service-api";
+} from "./transformers/transformers";
 
 const logger = createLogger("ProductWebCachedService");
 
@@ -363,7 +363,7 @@ const CATEGORY_PARENT_ID = 0;
  */
 export async function getCategories(): Promise<UICategory[]> {
   "use cache";
-  cacheLife("quarter");
+  cacheLife({ stale: 15 * 60, revalidate: 30 * 60 });
   cacheTag(CACHE_TAGS.categories, CACHE_TAGS.navigation);
 
   try {

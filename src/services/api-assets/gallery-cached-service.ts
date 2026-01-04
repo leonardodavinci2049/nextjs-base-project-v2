@@ -4,7 +4,7 @@ import { cacheLife, cacheTag } from "next/cache";
 import { createLogger } from "@/core/logger";
 import { CACHE_TAGS } from "@/lib/cache-config";
 import { assetsApiService } from "@/services/api-assets/assets-api-service";
-import type { GalleryImage } from "@/types/api-assets";
+import type { GalleryImage } from "@/services/api-assets/types/api-assets";
 
 const logger = createLogger("GalleryCachedService");
 

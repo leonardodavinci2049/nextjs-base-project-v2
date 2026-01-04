@@ -13,8 +13,8 @@ import type {
   ListFilesRequest,
   ListFilesResponse,
   UploadFileRequest,
-} from "@/types/api-assets";
-import { isApiError } from "@/types/api-assets";
+} from "@/services/api-assets/types/api-assets";
+import { isApiError } from "@/services/api-assets/types/api-assets";
 
 const logger = createLogger("AssetsApiService");
 
