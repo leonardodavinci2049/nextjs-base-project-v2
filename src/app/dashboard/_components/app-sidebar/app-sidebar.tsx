@@ -89,7 +89,7 @@ const data = {
           url: "#",
         },
       ],
-    },    
+    },
     {
       title: "Clientes",
       url: "#",
@@ -99,7 +99,7 @@ const data = {
           title: "Cadastros",
           url: "#",
         },
-  
+
         {
           title: "Novo Cadastro",
           url: "#",
@@ -148,7 +148,7 @@ const data = {
       icon: MapIcon,
     },
   ],
-    projects2: [
+  projects2: [
     {
       name: "Organização",
       url: "#",
