@@ -1,8 +1,8 @@
 import { getOrganizationBySlug } from "@/server/organizations";
 import { getUsers } from "@/server/users";
+import { SiteHeaderWithBreadcrumb } from "../../_components/header/site-header-with-breadcrumb";
 import InviteUsersTable from "./_components/invite-users-table";
 import MembersTable from "./_components/members-table";
-import { SiteHeaderWithBreadcrumb } from "../../_components/header/site-header-with-breadcrumb";
 
 type Params = Promise<{ slug: string }>;
 
@@ -26,9 +26,11 @@ export default async function OrganizationPage({ params }: { params: Params }) {
           { label: organization.name, isActive: true },
         ]}
       />
-      
+
       <div className="container mx-auto py-10 px-4 space-y-8">
-        <h1 className="text-3xl font-bold tracking-tight">{organization.name}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">
+          {organization.name}
+        </h1>
         <div className="space-y-4">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Members</h2>

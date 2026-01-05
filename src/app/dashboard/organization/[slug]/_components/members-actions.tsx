@@ -1,6 +1,7 @@
 "use client";
 
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -21,7 +22,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import type { Member } from "@/db/schema";
 import { removeMember } from "@/server/members";
-import { useRouter } from "next/navigation";
 
 interface MembersActionsProps {
   member: Member;
@@ -43,7 +43,7 @@ export function MembersActions({ member }: MembersActionsProps) {
       } else {
         toast.error(error || "Failed to remove member");
       }
-    } catch (error) {
+    } catch (_error) {
       toast.error("An error occurred");
     } finally {
       setIsDeleting(false);
