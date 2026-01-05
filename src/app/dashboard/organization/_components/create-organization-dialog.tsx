@@ -2,7 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { CreateOrganizationForm } from "@/components/forms/create-organization";
+import { CreateOrganizationForm } from "@/app/dashboard/organization/_forms/create-organization";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,

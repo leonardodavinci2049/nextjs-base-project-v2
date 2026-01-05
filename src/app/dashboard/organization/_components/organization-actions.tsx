@@ -3,7 +3,7 @@
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { UpdateOrganizationForm } from "@/components/forms/update-organization/update-organization-form";
+import { UpdateOrganizationForm } from "@/app/dashboard/organization/_forms/update-organization/update-organization-form";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
