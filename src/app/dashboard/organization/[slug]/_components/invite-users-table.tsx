@@ -59,55 +59,103 @@ export default function InviteUsersTable({
   };
 
   return (
-    <div className="rounded-md border">
-      <Table>
-        <TableHeader>
-          <TableRow className="bg-secondary hover:bg-secondary">
-            <TableHead className="w-[80px]">Avatar</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Email</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {users.map((user) => (
-            <TableRow key={user.id}>
-              <TableCell>
+    <>
+      {/* Desktop Table */}
+      <div className="hidden md:block rounded-md border">
+        <Table>
+          <TableHeader>
+            <TableRow className="bg-secondary hover:bg-secondary">
+              <TableHead className="w-[80px]">Avatar</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {users.map((user) => (
+              <TableRow key={user.id}>
+                <TableCell>
+                  <Avatar>
+                    <AvatarImage src={user.image || ""} alt={user.name || ""} />
+                    <AvatarFallback>
+                      {user.name?.substring(0, 2).toUpperCase() || "U"}
+                    </AvatarFallback>
+                  </Avatar>
+                </TableCell>
+                <TableCell className="font-medium">{user.name}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell className="text-right">
+                  <Button
+                    disabled={loadingId === user.id}
+                    onClick={() => handleInviteMember(user)}
+                    size="sm"
+                    variant="outline"
+                  >
+                    {loadingId === user.id ? (
+                      <Loader2 className="mr-2 size-4 animate-spin" />
+                    ) : (
+                      <UserPlus className="mr-2 size-4" />
+                    )}
+                    Invite
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
+            {users.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={4} className="h-24 text-center">
+                  No users found to invite.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+
+      {/* Mobile Cards */}
+      <div className="md:hidden space-y-3">
+        {users.map((user) => (
+          <div
+            key={user.id}
+            className="rounded-lg border bg-card p-4 shadow-sm"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3 min-w-0 flex-1">
                 <Avatar>
                   <AvatarImage src={user.image || ""} alt={user.name || ""} />
                   <AvatarFallback>
                     {user.name?.substring(0, 2).toUpperCase() || "U"}
                   </AvatarFallback>
                 </Avatar>
-              </TableCell>
-              <TableCell className="font-medium">{user.name}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell className="text-right">
-                <Button
-                  disabled={loadingId === user.id}
-                  onClick={() => handleInviteMember(user)}
-                  size="sm"
-                  variant="outline"
-                >
-                  {loadingId === user.id ? (
-                    <Loader2 className="mr-2 size-4 animate-spin" />
-                  ) : (
-                    <UserPlus className="mr-2 size-4" />
-                  )}
-                  Invite
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-          {users.length === 0 && (
-            <TableRow>
-              <TableCell colSpan={4} className="h-24 text-center">
-                No users found to invite.
-              </TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
-    </div>
+                <div className="min-w-0 flex-1">
+                  <p className="font-medium truncate">{user.name}</p>
+                  <p className="text-sm text-muted-foreground truncate">
+                    {user.email}
+                  </p>
+                </div>
+              </div>
+              <Button
+                disabled={loadingId === user.id}
+                onClick={() => handleInviteMember(user)}
+                size="sm"
+                variant="outline"
+              >
+                {loadingId === user.id ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <UserPlus className="size-4" />
+                )}
+                <span className="sr-only">Invite {user.name}</span>
+              </Button>
+            </div>
+          </div>
+        ))}
+        {users.length === 0 && (
+          <div className="rounded-lg border bg-card p-8 text-center text-muted-foreground">
+            No users found to invite.
+          </div>
+        )}
+      </div>
+    </>
   );
 }
