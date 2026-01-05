@@ -52,7 +52,7 @@ const data = {
   ],
   navMain: [
     {
-      title: "Workstation",
+      title: "Consultor ",
       url: "/dashboard",
       icon: SquareTerminal,
       isActive: true,

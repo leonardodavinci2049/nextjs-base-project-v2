@@ -8,7 +8,14 @@ export default async function OrganizationPage() {
 
   return (
     <>
-      <SiteHeaderWithBreadcrumb />
+      {/* Header fixo no topo */}
+      <SiteHeaderWithBreadcrumb
+        title="Dashboard"
+        breadcrumbItems={[
+          { label: "Dashboard", href: "" },
+          { label: "Organizations", isActive: true },
+        ]}
+      />
       <div className="container mx-auto py-10 px-4 space-y-6">
         <div className="flex items-center justify-between">
           <div>
