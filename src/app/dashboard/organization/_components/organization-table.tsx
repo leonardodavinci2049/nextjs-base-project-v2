@@ -75,10 +75,7 @@ export function OrganizationTable({ organizations }: OrganizationTableProps) {
       {/* Mobile Cards */}
       <div className="md:hidden space-y-3">
         {organizations.map((org) => (
-          <div
-            key={org.id}
-            className="rounded-lg border bg-card p-4 shadow-sm"
-          >
+          <div key={org.id} className="rounded-lg border bg-card p-4 shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0 flex-1">
                 <Avatar>

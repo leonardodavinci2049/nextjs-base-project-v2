@@ -45,7 +45,9 @@ export default function MembersTable({ members }: MembersTableProps) {
                     </AvatarFallback>
                   </Avatar>
                 </TableCell>
-                <TableCell className="font-medium">{member.user.name}</TableCell>
+                <TableCell className="font-medium">
+                  {member.user.name}
+                </TableCell>
                 <TableCell>{member.user.email}</TableCell>
                 <TableCell>
                   <Badge variant="secondary">{member.role}</Badge>
