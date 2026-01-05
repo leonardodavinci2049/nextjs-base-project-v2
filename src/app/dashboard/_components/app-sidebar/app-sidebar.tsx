@@ -151,12 +151,12 @@ const data = {
   projects2: [
     {
       name: "Organização",
-      url: "#",
+      url: "/dashboard/organization",
       icon: Frame,
     },
     {
       name: "Usuários",
-      url: "#",
+      url: "/dashboard/organization/mundial",
       icon: PieChart,
     },
     {

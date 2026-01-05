@@ -12,6 +12,7 @@ import {
 import { getOrganizations } from "@/server/organizations";
 
 export default async function OrganizationPage() {
+  
   const organizations = await getOrganizations();
 
   return (
@@ -35,7 +36,7 @@ export default async function OrganizationPage() {
         <h2 className="font-bold text-2xl">Organizations</h2>
         {organizations.map((organization) => (
           <Button asChild key={organization.id} variant="outline">
-            <Link href={`/organization/${organization.slug}`}>
+            <Link href={`/dashboard/organization/${organization.slug}`}>
               {organization.name}
             </Link>
           </Button>
