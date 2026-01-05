@@ -33,7 +33,10 @@ export default function MembersTable({ members }: MembersTableProps) {
             <TableRow key={member.id}>
               <TableCell>
                 <Avatar>
-                  <AvatarImage src={member.user.image || ""} alt={member.user.name || ""} />
+                  <AvatarImage
+                    src={member.user.image || ""}
+                    alt={member.user.name || ""}
+                  />
                   <AvatarFallback>
                     {member.user.name?.substring(0, 2).toUpperCase() || "U"}
                   </AvatarFallback>

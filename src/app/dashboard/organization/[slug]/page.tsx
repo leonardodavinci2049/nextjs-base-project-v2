@@ -44,10 +44,7 @@ export default async function OrganizationPage({ params }: { params: Params }) {
               Invite users to join this organization.
             </p>
           </div>
-          <InviteUsersTable
-            organizationId={organization.id}
-            users={users}
-          />
+          <InviteUsersTable organizationId={organization.id} users={users} />
         </div>
       </div>
     </>

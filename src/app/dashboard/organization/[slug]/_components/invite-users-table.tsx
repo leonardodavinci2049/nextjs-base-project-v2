@@ -22,7 +22,10 @@ type InviteUsersTableProps = {
   organizationId: string;
 };
 
-export default function InviteUsersTable({ users, organizationId }: InviteUsersTableProps) {
+export default function InviteUsersTable({
+  users,
+  organizationId,
+}: InviteUsersTableProps) {
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const router = useRouter();
 
