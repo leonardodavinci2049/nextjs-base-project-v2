@@ -1,47 +1,25 @@
-import Link from "next/link";
-import { CreateOrganizationForm } from "@/components/forms/create-organization";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { getOrganizations } from "@/server/organizations";
+import { SiteHeaderWithBreadcrumb } from "../_components/header/site-header-with-breadcrumb";
+import { CreateOrganizationDialog } from "./_components/create-organization-dialog";
+import { OrganizationTable } from "./_components/organization-table";
 
 export default async function OrganizationPage() {
-  
   const organizations = await getOrganizations();
 
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-2">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button variant="outline">Create Organization</Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Create Organization</DialogTitle>
-            <DialogDescription>
-              Create a new organization to get started.
-            </DialogDescription>
-          </DialogHeader>
-          <CreateOrganizationForm />
-        </DialogContent>
-      </Dialog>
+    <>
+      <SiteHeaderWithBreadcrumb />
+      <div className="container mx-auto py-10 px-4 space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Organizations</h1>
+            <p className="text-muted-foreground">Manage your organizations.</p>
+          </div>
+          <CreateOrganizationDialog />
+        </div>
 
-      <div className="flex flex-col gap-2">
-        <h2 className="font-bold text-2xl">Organizations</h2>
-        {organizations.map((organization) => (
-          <Button asChild key={organization.id} variant="outline">
-            <Link href={`/dashboard/organization/${organization.slug}`}>
-              {organization.name}
-            </Link>
-          </Button>
-        ))}
+        <OrganizationTable organizations={organizations} />
       </div>
-    </div>
+    </>
   );
 }

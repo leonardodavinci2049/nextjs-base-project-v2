@@ -3,28 +3,30 @@
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import { createOrganizationSchema } from "./schema";
+import { updateOrganizationSchema } from "./schema";
 
-export type CreateOrganizationState = {
+export type UpdateOrganizationState = {
   success: boolean;
   message: string;
   errors?: {
     name?: string[];
     slug?: string[];
+    organizationId?: string[];
   };
 };
 
-export async function createOrganizationAction(
-  _prevState: CreateOrganizationState,
+export async function updateOrganizationAction(
+  _prevState: UpdateOrganizationState,
   formData: FormData,
-): Promise<CreateOrganizationState> {
+): Promise<UpdateOrganizationState> {
   const rawData = {
+    organizationId: formData.get("organizationId"),
     name: formData.get("name"),
     slug: formData.get("slug"),
   };
 
   // Validate with Zod
-  const validatedFields = createOrganizationSchema.safeParse(rawData);
+  const validatedFields = updateOrganizationSchema.safeParse(rawData);
 
   if (!validatedFields.success) {
     return {
@@ -34,14 +36,17 @@ export async function createOrganizationAction(
     };
   }
 
-  const { name, slug } = validatedFields.data;
+  const { organizationId, name, slug } = validatedFields.data;
 
   try {
-    await auth.api.createOrganization({
+    await auth.api.updateOrganization({
       headers: await headers(),
       body: {
-        name,
-        slug,
+        organizationId,
+        data: {
+          name,
+          slug,
+        },
       },
     });
 
@@ -49,13 +54,13 @@ export async function createOrganizationAction(
 
     return {
       success: true,
-      message: "Organization created successfully",
+      message: "Organization updated successfully",
     };
   } catch (error) {
     const e = error as Error;
     return {
       success: false,
-      message: e.message || "Failed to create organization",
+      message: e.message || "Failed to update organization",
     };
   }
 }

@@ -20,7 +20,7 @@ export default function MembersTable({ members }: MembersTableProps) {
       <TableCaption>A list of organization members.</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Username</TableHead>
+          <TableHead className="w-25">Username</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Role</TableHead>
           <TableHead className="text-right">Actions</TableHead>
