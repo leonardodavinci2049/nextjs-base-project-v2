@@ -12,6 +12,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import HeaderNavUser from "./header-nav-user";
+import { LogoutButton } from "./logout-button";
 
 interface SiteHeaderWithBreadcrumbProps {
   title?: string;
@@ -71,6 +72,7 @@ export function SiteHeaderWithBreadcrumb({
           <Suspense>
             <ModeToggle />
           </Suspense>
+          <LogoutButton />
 
           <Suspense
             fallback={
