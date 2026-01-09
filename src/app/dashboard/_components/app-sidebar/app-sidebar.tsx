@@ -149,11 +149,7 @@ const data = {
     },
   ],
   admin: [
-    {
-      name: "Panel",
-      url: "/dashboard/admin",
-      icon: Frame,
-    },
+
     {
       name: "Organização 1",
       url: "/dashboard/admin/organization1",
@@ -165,8 +161,8 @@ const data = {
       icon: Frame,
     },
     {
-      name: "Membros",
-      url: "/dashboard/admin/organization/mundial",
+      name: "Usuários",
+      url: "/dashboard/admin/users",
       icon: PieChart,
     },
 
