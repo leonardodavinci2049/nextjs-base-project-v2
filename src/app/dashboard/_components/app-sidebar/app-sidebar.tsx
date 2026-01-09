@@ -131,7 +131,7 @@ const data = {
       ],
     },
   ],
-  projects1: [
+  projects: [
     {
       name: "Pendências",
       url: "#",
@@ -148,12 +148,23 @@ const data = {
       icon: MapIcon,
     },
   ],
-  projects2: [
+  admin: [
+    {
+      name: "Panel",
+      url: "/dashboard/admin",
+      icon: Frame,
+    },
     {
       name: "Organização",
       url: "/dashboard/organization",
       icon: Frame,
     },
+    {
+      name: "Membros",
+      url: "/dashboard/organization/mundial",
+      icon: PieChart,
+    },
+
     {
       name: "Usuários",
       url: "/dashboard/organization/mundial",
@@ -175,8 +186,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects1} />
-        <NavProjects projects={data.projects2} />
+        <NavProjects projects={data.projects} />
+        <NavProjects projects={data.admin} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
