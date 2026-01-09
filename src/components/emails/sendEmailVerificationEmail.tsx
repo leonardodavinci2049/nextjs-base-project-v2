@@ -30,7 +30,7 @@ const EmailVerificationTemplate = ({
           <Container className="mx-auto bg-white rounded-[8px] shadow-sm max-w-[600px] px-[32px] py-[40px]">
             {/* Header */}
             <Section className="text-center mb-[32px]">
-              <Heading className="text-[28px] font-bold text-gray-900 m-0 mb-[8px]">
+              <Heading className="text-[28px] font-bold text-gray-900 m-0 mb-2">
                 Verify Your Email Address
               </Heading>
               <Text className="text-[16px] text-gray-600 m-0">
@@ -40,17 +40,17 @@ const EmailVerificationTemplate = ({
 
             {/* Main Content */}
             <Section className="mb-[32px]">
-              <Text className="text-[16px] text-gray-800 mb-[16px] leading-[24px]">
+              <Text className="text-[16px] text-gray-800 mb-[16px] leading-6">
                 {user.name ? `Hi ${user.name},` : "Hello,"}
               </Text>
 
-              <Text className="text-[16px] text-gray-800 mb-[24px] leading-[24px]">
+              <Text className="text-[16px] text-gray-800 mb-6 leading-6">
                 Thanks for signing up! We need to verify your email address{" "}
                 <strong>{user.email}</strong> to complete your account setup and
                 ensure the security of your account.
               </Text>
 
-              <Text className="text-[16px] text-gray-800 mb-[32px] leading-[24px]">
+              <Text className="text-[16px] text-gray-800 mb-[32px] leading-6">
                 Click the button below to verify your email address:
               </Text>
 
@@ -64,7 +64,7 @@ const EmailVerificationTemplate = ({
                 </Button>
               </Section>
 
-              <Text className="text-[14px] text-gray-600 mb-[24px] leading-[20px]">
+              <Text className="text-[14px] text-gray-600 mb-6 leading-[20px]">
                 If the button above doesn't work, you can copy and paste the
                 following link into your browser:
               </Text>
@@ -90,18 +90,18 @@ const EmailVerificationTemplate = ({
             </Section>
 
             {/* Footer */}
-            <Section className="border-t border-gray-200 pt-[24px]">
-              <Text className="text-[12px] text-gray-500 leading-[16px] m-0 mb-[8px]">
+            <Section className="border-t border-gray-200 pt-6">
+              <Text className="text-[12px] text-gray-500 leading-4 m-0 mb-2">
                 This email was sent to {user.email}. If you have any questions,
                 please contact our support team.
               </Text>
 
-              <Text className="text-[12px] text-gray-500 leading-[16px] m-0 mb-[8px]">
+              <Text className="text-[12px] text-gray-500 leading-4 m-0 mb-2">
                 © {new Date().getFullYear()} Your Company Name. All rights
                 reserved.
               </Text>
 
-              <Text className="text-[12px] text-gray-500 leading-[16px] m-0">
+              <Text className="text-[12px] text-gray-500 leading-4 m-0">
                 123 Business Street, Suite 100, City, State 12345
               </Text>
             </Section>
