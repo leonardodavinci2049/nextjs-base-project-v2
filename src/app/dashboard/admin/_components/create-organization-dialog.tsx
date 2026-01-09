@@ -2,7 +2,7 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
-import { CreateOrganizationForm } from "@/app/dashboard/admin/_forms/create-organization";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { CreateOrganizationForm } from "../organization1/_forms/create-organization";
 
 export function CreateOrganizationDialog() {
   const [open, setOpen] = useState(false);

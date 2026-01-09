@@ -165,8 +165,8 @@ const data = {
       icon: Frame,
     },
     {
-      name: "Membros",
-      url: "/dashboard/admin/organization/mundial",
+      name: "Usuários",
+      url: "/dashboard/admin/users",
       icon: PieChart,
     },
 
