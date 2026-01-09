@@ -151,7 +151,7 @@ export const auth = betterAuth({
         member,
       },
     }),
-    twoFactor(),
+
     lastLoginMethod(),
     nextCookies(),
   ],

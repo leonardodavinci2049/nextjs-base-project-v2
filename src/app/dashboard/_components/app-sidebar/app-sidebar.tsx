@@ -155,13 +155,18 @@ const data = {
       icon: Frame,
     },
     {
-      name: "Organização",
-      url: "/dashboard/organization",
+      name: "Organização 1",
+      url: "/dashboard/admin/organization1",
+      icon: Frame,
+    },
+    {
+      name: "Organização 2",
+      url: "/dashboard/admin/organization2",
       icon: Frame,
     },
     {
       name: "Membros",
-      url: "/dashboard/organization/mundial",
+      url: "/dashboard/admin/organization/mundial",
       icon: PieChart,
     },
 
