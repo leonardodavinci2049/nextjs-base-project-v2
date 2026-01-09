@@ -1,11 +1,23 @@
 import {
+  adminClient,
   lastLoginMethodClient,
   organizationClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
+import { ac, admin, user } from "./permissions";
 
 export const authClient = createAuthClient({
   /** The base URL of the server (optional if you're using the same domain) */
   baseURL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
-  plugins: [organizationClient(), lastLoginMethodClient()],
+  plugins: [
+    organizationClient(),
+    adminClient({
+      ac,
+      roles: {
+        admin,
+        user,
+      },
+    }),
+    lastLoginMethodClient(),
+  ],
 });
