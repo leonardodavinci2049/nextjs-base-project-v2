@@ -160,6 +160,11 @@ const data = {
       url: "/dashboard/admin/organization1/caixa-fechada",
       icon: Frame,
     },
+        {
+      name: "Organização 3",
+      url: "/dashboard/admin/organization2",
+      icon: Frame,
+    },
     {
       name: "Usuários",
       url: "/dashboard/admin/users",
