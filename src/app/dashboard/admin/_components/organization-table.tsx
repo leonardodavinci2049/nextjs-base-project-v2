@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -42,7 +43,14 @@ export function OrganizationTable({ organizations }: OrganizationTableProps) {
                     </AvatarFallback>
                   </Avatar>
                 </TableCell>
-                <TableCell className="font-medium">{org.name}</TableCell>
+                <TableCell className="font-medium">
+                  <Link
+                    href={`/dashboard/admin/organization1/${org.slug}`}
+                    className="hover:underline text-blue-600 dark:text-blue-400"
+                  >
+                    {org.name}
+                  </Link>
+                </TableCell>
                 <TableCell>
                   <Badge variant="outline">{org.slug}</Badge>
                 </TableCell>
@@ -85,7 +93,12 @@ export function OrganizationTable({ organizations }: OrganizationTableProps) {
                   </AvatarFallback>
                 </Avatar>
                 <div className="min-w-0 flex-1">
-                  <p className="font-medium truncate">{org.name}</p>
+                  <Link
+                    href={`/dashboard/admin/organization1/${org.slug}`}
+                    className="font-medium hover:underline text-blue-600 dark:text-blue-400 block truncate"
+                  >
+                    {org.name}
+                  </Link>
                   <Badge variant="outline" className="mt-1">
                     {org.slug}
                   </Badge>

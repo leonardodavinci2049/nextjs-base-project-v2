@@ -1,8 +1,11 @@
+import Link from "next/link";
 import { getOrganizationBySlug } from "@/server/organizations";
 import { getUsers } from "@/server/users";
-import { SiteHeaderWithBreadcrumb } from "../../_components/header/site-header-with-breadcrumb";
+import { Button } from "@/components/ui/button";
+
 import InviteUsersTable from "./_components/invite-users-table";
 import MembersTable from "./_components/members-table";
+import { SiteHeaderWithBreadcrumb } from "@/app/dashboard/_components/header/site-header-with-breadcrumb";
 
 type Params = Promise<{ slug: string }>;
 
@@ -28,14 +31,19 @@ export default async function OrganizationPage({ params }: { params: Params }) {
       />
 
       <div className="container mx-auto py-10 px-4 space-y-8">
-        <h1 className="text-3xl font-bold tracking-tight">
-          {organization.name}
-        </h1>
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold tracking-tight">
+            {organization.name}
+          </h1>
+          <Link href="/dashboard/admin/organization1">
+            <Button variant="outline">Voltar</Button>
+          </Link>
+        </div>
         <div className="space-y-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">Members</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Membros</h2>
             <p className="text-muted-foreground">
-             Gerenciar os membros desta organização.
+              Gerenciar os membros desta organização.
             </p>
           </div>
           <MembersTable members={organization.member || []} />

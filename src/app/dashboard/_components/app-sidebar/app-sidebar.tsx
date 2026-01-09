@@ -161,7 +161,7 @@ const data = {
     },
     {
       name: "Organização 2",
-      url: "/dashboard/admin/organization2",
+      url: "/dashboard/admin/organization1/caixa-fechada",
       icon: Frame,
     },
     {
@@ -171,8 +171,8 @@ const data = {
     },
 
     {
-      name: "Usuários",
-      url: "/dashboard/organization/mundial",
+      name: "Profile",
+      url: "/dashboard/admin/profile",
       icon: PieChart,
     },
     {
