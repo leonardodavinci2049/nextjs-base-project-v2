@@ -1,11 +1,10 @@
 import Link from "next/link";
+import { SiteHeaderWithBreadcrumb } from "@/app/dashboard/_components/header/site-header-with-breadcrumb";
+import { Button } from "@/components/ui/button";
 import { getOrganizationBySlug } from "@/server/organizations";
 import { getUsers } from "@/server/users";
-import { Button } from "@/components/ui/button";
-
 import InviteUsersTable from "./_components/invite-users-table";
 import MembersTable from "./_components/members-table";
-import { SiteHeaderWithBreadcrumb } from "@/app/dashboard/_components/header/site-header-with-breadcrumb";
 
 type Params = Promise<{ slug: string }>;
 
@@ -51,7 +50,9 @@ export default async function OrganizationPage({ params }: { params: Params }) {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">Convide Usuários</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Convide Usuários
+            </h2>
             <p className="text-muted-foreground">
               Convide usuários para se juntarem a esta organização.
             </p>

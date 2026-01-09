@@ -35,7 +35,7 @@ export default async function OrganizationPage({ params }: { params: Params }) {
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Members</h2>
             <p className="text-muted-foreground">
-             Gerenciar os membros desta organização.
+              Gerenciar os membros desta organização.
             </p>
           </div>
           <MembersTable members={organization.member || []} />
@@ -43,7 +43,9 @@ export default async function OrganizationPage({ params }: { params: Params }) {
 
         <div className="space-y-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">Convide Usuários</h2>
+            <h2 className="text-2xl font-bold tracking-tight">
+              Convide Usuários
+            </h2>
             <p className="text-muted-foreground">
               Convide usuários para se juntarem a esta organização.
             </p>
