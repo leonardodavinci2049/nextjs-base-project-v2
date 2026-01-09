@@ -26,10 +26,10 @@ const EmailVerificationTemplate = ({
       <Head />
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="bg-gray-100 font-sans py-[40px]">
-          <Container className="mx-auto bg-white rounded-[8px] shadow-sm max-w-[600px] px-[32px] py-[40px]">
+        <Body className="bg-gray-100 font-sans py-10">
+          <Container className="mx-auto bg-white rounded-xl shadow-sm max-w-150 px-8 py-10">
             {/* Header */}
-            <Section className="text-center mb-[32px]">
+            <Section className="text-center mb-8">
               <Heading className="text-[28px] font-bold text-gray-900 m-0 mb-2">
                 Verify Your Email Address
               </Heading>
@@ -39,8 +39,8 @@ const EmailVerificationTemplate = ({
             </Section>
 
             {/* Main Content */}
-            <Section className="mb-[32px]">
-              <Text className="text-[16px] text-gray-800 mb-[16px] leading-6">
+            <Section className="mb-8">
+              <Text className="text-[16px] text-gray-800 mb-4 leading-6">
                 {user.name ? `Hi ${user.name},` : "Hello,"}
               </Text>
 
@@ -50,30 +50,30 @@ const EmailVerificationTemplate = ({
                 ensure the security of your account.
               </Text>
 
-              <Text className="text-[16px] text-gray-800 mb-[32px] leading-6">
+              <Text className="text-[16px] text-gray-800 mb-8 leading-6">
                 Click the button below to verify your email address:
               </Text>
 
               {/* Verification Button */}
-              <Section className="text-center mb-[32px]">
+              <Section className="text-center mb-8">
                 <Button
                   href={url}
-                  className="bg-blue-600 text-white px-[32px] py-[16px] rounded-[8px] text-[16px] font-semibold no-underline box-border inline-block"
+                  className="bg-blue-600 text-white px-8 py-4 rounded-xl text-[16px] font-semibold no-underline box-border inline-block"
                 >
                   Verify Email Address
                 </Button>
               </Section>
 
-              <Text className="text-[14px] text-gray-600 mb-6 leading-[20px]">
+              <Text className="text-[14px] text-gray-600 mb-6 leading-5">
                 If the button above doesn't work, you can copy and paste the
                 following link into your browser:
               </Text>
 
-              <Text className="text-[14px] text-blue-600 break-all mb-[32px] bg-gray-50 p-[16px] rounded-[6px] border border-gray-200">
+              <Text className="text-[14px] text-blue-600 break-all mb-8 bg-gray-50 p-4 rounded-[6px] border border-gray-200">
                 {url}
               </Text>
 
-              <Text className="text-[14px] text-gray-600 leading-[20px]">
+              <Text className="text-[14px] text-gray-600 leading-5">
                 This verification link will expire in 24 hours for security
                 reasons. If you didn't create an account, you can safely ignore
                 this email.
@@ -81,8 +81,8 @@ const EmailVerificationTemplate = ({
             </Section>
 
             {/* Security Notice */}
-            <Section className="border-t border-gray-200 pt-[24px] mb-[32px]">
-              <Text className="text-[14px] text-gray-600 leading-[20px] mb-[16px]">
+            <Section className="border-t border-gray-200 pt-6 mb-8">
+              <Text className="text-[14px] text-gray-600 leading-5 mb-4">
                 <strong>Security tip:</strong> Never share this verification
                 link with anyone. Our team will never ask you for your password
                 or verification links.
