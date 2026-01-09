@@ -24,4 +24,14 @@ const owner = ac.newRole({
   organization: ["create", "update", "delete", "manage"],
 });
 
-export { ac, member, admin, owner, statement };
+const user = ac.newRole({
+  organization: ["create"],
+  project: ["create"],
+});
+
+const superAdmin = ac.newRole({
+  project: ["create", "share", "update", "delete"],
+  organization: ["create", "update", "delete", "manage"],
+});
+
+export { ac, member, admin, owner, user, superAdmin, statement };

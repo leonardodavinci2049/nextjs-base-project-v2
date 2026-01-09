@@ -1,50 +1,54 @@
 import { betterAuth } from "better-auth";
 
 import { nextCookies } from "better-auth/next-js";
-import { lastLoginMethod, organization } from "better-auth/plugins";
+import { lastLoginMethod, organization, twoFactor } from "better-auth/plugins";
 import { createPool } from "mysql2/promise";
 import { Resend } from "resend";
-
-import OrganizationInvitationEmail from "@/components/emails/organization-invitation";
-import ForgotPasswordEmail from "@/components/emails/reset-password";
+import { admin as adminPlugin } from "better-auth/plugins/admin";
 import VerifyEmail from "@/components/emails/verify-email";
 import { envs } from "@/core/config/envs";
 import { getActiveOrganization } from "@/server/organizations";
 
 const resend = new Resend(envs.RESEND_API_KEY);
 
-import { admin, member, owner } from "./permissions";
+import ForgotPasswordEmail from "@/components/emails/reset-password";
+import sendDeleteAccountVerificationEmail from "@/components/emails/sendDeleteAccountVerificationEmail";
+import sendEmailVerificationEmail from "@/components/emails/sendEmailVerificationEmail";
+
+import { ac, admin, member, owner, superAdmin, user } from "./permissions";
+
+import OrganizationInvitationEmail from "@/components/emails/organization-invitation";
 
 export const auth = betterAuth({
+  appName: "AI Sales Agent",
   secret: envs.BETTER_AUTH_SECRET,
-  database: createPool({
-    host: envs.DATABASE_HOST,
-    port: envs.DATABASE_PORT,
-    user: envs.DATABASE_USER,
-    password: envs.DATABASE_PASSWORD,
-    database: envs.DATABASE_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-  }),
-
-  databaseHooks: {
-    session: {
-      create: {
-        before: async (session) => {
-          const activeOrganization = await getActiveOrganization(
-            session.userId,
-          );
-          return {
-            data: {
-              ...session,
-              activeOrganizationId: activeOrganization?.id,
-            },
-          };
-        },
+  user: {
+    changeEmail: {
+      enabled: true,
+      sendChangeEmailVerification: async ({ user, url, newEmail }) => {
+        await sendEmailVerificationEmail({
+          user: { ...user, email: newEmail },
+          url,
+        });
+      },
+    },
+    deleteUser: {
+      enabled: true,
+      sendDeleteAccountVerification: async ({ user, url }) => {
+        await sendDeleteAccountVerificationEmail({
+          userName: user.name,
+          confirmationUrl: url,
+        });
+      },
+    },
+    additionalFields: {
+      favoriteNumber: {
+        type: "number",
+        required: true,
       },
     },
   },
+
   emailAndPassword: {
     enabled: true,
     sendResetPassword: async ({ user, url }) => {
@@ -86,7 +90,52 @@ export const auth = betterAuth({
     },
   },
 
+  database: createPool({
+    host: envs.DATABASE_HOST,
+    port: envs.DATABASE_PORT,
+    user: envs.DATABASE_USER,
+    password: envs.DATABASE_PASSWORD,
+    database: envs.DATABASE_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+  }),
+
+  databaseHooks: {
+    session: {
+      create: {
+        before: async (session) => {
+          const activeOrganization = await getActiveOrganization(
+            session.userId,
+          );
+          return {
+            data: {
+              ...session,
+              activeOrganizationId: activeOrganization?.id,
+            },
+          };
+        },
+      },
+    },
+  },
+
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 60, // 1 minute
+    },
+  },
+
   plugins: [
+    twoFactor(),
+
+    adminPlugin({
+      ac,
+      roles: {
+        admin: superAdmin,
+        user,
+      },
+    }),
     organization({
       sendInvitationEmail: async (data) => {
         const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/accept-invitation/${data.id}`;
