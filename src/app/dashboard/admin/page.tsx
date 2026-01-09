@@ -6,17 +6,27 @@ import { BetterAuthActionButton } from "@/components/auth/better-auth-action-but
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth/auth-client";
 
-export default function Home() {
+export default function PageAdminUsers() {
   const [hasAdminPermission, setHasAdminPermission] = useState(false);
-  const { data: session, isPending: loading } = authClient.useSession();
+  const {
+    data: session,
+    isPending: loading,
+    refetch,
+  } = authClient.useSession();
 
   useEffect(() => {
-    authClient.admin
-      .hasPermission({ permission: { user: ["list"] } })
-      .then(({ data }) => {
-        setHasAdminPermission(data?.success ?? false);
+    const checkPermission = async () => {
+      // Primeiro, faz refresh da sessão para carregar dados atualizados do banco
+      await refetch();
+
+      const response = await authClient.admin.hasPermission({
+        permission: { user: ["list"] },
       });
-  }, []);
+      setHasAdminPermission(response.data?.success ?? false);
+    };
+
+    checkPermission();
+  }, [refetch]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -29,7 +39,7 @@ export default function Home() {
           <>
             <h1 className="text-3xl font-bold">Welcome to Our App</h1>
             <Button asChild size="lg">
-              <Link href="/auth/login">Sign In / Sign Up</Link>
+              <Link href="/">Sign In / Sign Up</Link>
             </Button>
           </>
         ) : (
@@ -37,14 +47,14 @@ export default function Home() {
             <h1 className="text-3xl font-bold">Welcome {session.user.name}!</h1>
             <div className="flex gap-4 justify-center">
               <Button asChild size="lg">
-                <Link href="/profile">Profile</Link>
+                <Link href="/dashboard/admin">Dashboard</Link>
               </Button>
               <Button asChild size="lg" variant="outline">
-                <Link href="/organizations">Organizations</Link>
+                <Link href="/dashboard/admin/organization2">Organizações</Link>
               </Button>
               {hasAdminPermission && (
                 <Button variant="outline" asChild size="lg">
-                  <Link href="/admin">Admin</Link>
+                  <Link href="/admin">Panel Admin</Link>
                 </Button>
               )}
               <BetterAuthActionButton
