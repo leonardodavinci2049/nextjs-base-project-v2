@@ -65,7 +65,7 @@ export default function InviteUsersTable({
         <Table>
           <TableHeader>
             <TableRow className="bg-secondary hover:bg-secondary">
-              <TableHead className="w-[80px]">Avatar</TableHead>
+              <TableHead className="w-20">Avatar</TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Email</TableHead>
               <TableHead className="text-right">Actions</TableHead>
