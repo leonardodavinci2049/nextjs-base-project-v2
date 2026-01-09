@@ -3,7 +3,7 @@
 import { MoreHorizontal, Pencil, Trash } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { UpdateOrganizationForm } from "@/app/dashboard/admin/_forms/update-organization/update-organization-form";
+
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -21,6 +21,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { Organization } from "@/db/schema";
+import { UpdateOrganizationForm } from "../organization1/_forms/update-organization/update-organization-form";
 import { deleteOrganizationAction } from "./actions";
 
 interface OrganizationActionsProps {
