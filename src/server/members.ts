@@ -1,7 +1,7 @@
 "use server";
 
 import type { Role } from "@/db/schema";
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth/auth";
 import { AuthService } from "@/services/db/auth/auth.service";
 import { isAdmin } from "./permissions";
 

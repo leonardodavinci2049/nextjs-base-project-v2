@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth/auth";
 import { forgotPasswordSchema } from "./schema";
 
 export type ForgotPasswordState = {

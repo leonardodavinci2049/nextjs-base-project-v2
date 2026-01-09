@@ -2,7 +2,7 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth/auth";
 import { LoginForm } from "./components/login-form";
 
 export default async function LoginPage() {

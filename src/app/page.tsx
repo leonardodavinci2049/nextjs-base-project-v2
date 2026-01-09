@@ -1,7 +1,7 @@
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
+import { auth } from "@/lib/auth/auth";
 
 // Força renderização dinâmica (necessário porque usamos headers())
 export const dynamic = "force-dynamic";

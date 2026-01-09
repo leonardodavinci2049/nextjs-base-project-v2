@@ -13,7 +13,7 @@ import { getActiveOrganization } from "@/server/organizations";
 
 const resend = new Resend(envs.RESEND_API_KEY);
 
-import { admin, member, owner } from "./auth/permissions";
+import { admin, member, owner } from "./permissions";
 
 export const auth = betterAuth({
   secret: envs.BETTER_AUTH_SECRET,
