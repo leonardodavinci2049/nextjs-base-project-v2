@@ -2,22 +2,20 @@ import { betterAuth } from "better-auth";
 
 import { nextCookies } from "better-auth/next-js";
 import { lastLoginMethod, organization, twoFactor } from "better-auth/plugins";
+import { admin as adminPlugin } from "better-auth/plugins/admin";
 import { createPool } from "mysql2/promise";
 import { Resend } from "resend";
-import { admin as adminPlugin } from "better-auth/plugins/admin";
 import VerifyEmail from "@/components/emails/verify-email";
 import { envs } from "@/core/config/envs";
 import { getActiveOrganization } from "@/server/organizations";
 
 const resend = new Resend(envs.RESEND_API_KEY);
 
+import OrganizationInvitationEmail from "@/components/emails/organization-invitation";
 import ForgotPasswordEmail from "@/components/emails/reset-password";
 import sendDeleteAccountVerificationEmail from "@/components/emails/sendDeleteAccountVerificationEmail";
 import sendEmailVerificationEmail from "@/components/emails/sendEmailVerificationEmail";
-
 import { ac, admin, member, owner, superAdmin, user } from "./permissions";
-
-import OrganizationInvitationEmail from "@/components/emails/organization-invitation";
 
 export const auth = betterAuth({
   appName: "AI Sales Agent",
@@ -39,12 +37,6 @@ export const auth = betterAuth({
           userName: user.name,
           confirmationUrl: url,
         });
-      },
-    },
-    additionalFields: {
-      favoriteNumber: {
-        type: "number",
-        required: true,
       },
     },
   },
