@@ -149,11 +149,7 @@ const data = {
     },
   ],
   admin: [
-    {
-      name: "Panel",
-      url: "/dashboard/admin",
-      icon: Frame,
-    },
+
     {
       name: "Organização 1",
       url: "/dashboard/admin/organization1",
