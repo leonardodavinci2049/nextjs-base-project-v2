@@ -1,7 +1,7 @@
 import { getOrganizations } from "@/server/organizations";
-import { SiteHeaderWithBreadcrumb } from "../_components/header/site-header-with-breadcrumb";
-import { CreateOrganizationDialog } from "./_components/create-organization-dialog";
-import { OrganizationTable } from "./_components/organization-table";
+import { SiteHeaderWithBreadcrumb } from "../../_components/header/site-header-with-breadcrumb";
+import { CreateOrganizationDialog } from "../_components/create-organization-dialog";
+import { OrganizationTable } from "../_components/organization-table";
 
 export default async function OrganizationPage() {
   const organizations = await getOrganizations();

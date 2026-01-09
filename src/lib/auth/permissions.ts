@@ -5,6 +5,7 @@ const statement = {
   ...defaultStatements,
   project: ["create", "share", "update", "delete"],
   organization: ["create", "update", "delete", "manage"],
+  user: ["list", "update", "delete"],
 } as const;
 
 const ac = createAccessControl(statement);
@@ -32,6 +33,7 @@ const user = ac.newRole({
 const superAdmin = ac.newRole({
   project: ["create", "share", "update", "delete"],
   organization: ["create", "update", "delete", "manage"],
+  user: ["list", "update", "delete"],
 });
 
 export { ac, member, admin, owner, user, superAdmin, statement };
