@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import { Suspense } from "react";
 
 import ModeToggle from "@/components/theme/mode-toggle";
@@ -11,7 +12,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
-import HeaderNavUser from "./header-nav-user";
+import { auth } from "@/lib/auth/auth";
+import { NavUser } from "../app-sidebar/nav-user";
 import { LogoutButton } from "./logout-button";
 
 interface SiteHeaderWithBreadcrumbProps {
@@ -23,13 +25,28 @@ interface SiteHeaderWithBreadcrumbProps {
   }>;
 }
 
-export function SiteHeaderWithBreadcrumb({
+export async function SiteHeaderWithBreadcrumb({
   title = "Dashboard",
   breadcrumbItems = [
     { label: "Dashboard", href: "#" },
     { label: "Analytics", isActive: true },
   ],
 }: SiteHeaderWithBreadcrumbProps) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  const user = session?.user
+    ? {
+        name: session.user.name,
+        email: session.user.email,
+        avatar: session.user.image || "",
+      }
+    : {
+        name: "Guest",
+        email: "",
+        avatar: "",
+      };
   return (
     <header className="flex h-(--header-height) w-full shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
@@ -79,7 +96,7 @@ export function SiteHeaderWithBreadcrumb({
               <div className="bg-muted/30 h-10 w-32 animate-pulse rounded-full" />
             }
           >
-            <HeaderNavUser />
+            <NavUser user={user} />
           </Suspense>
         </div>
       </div>
