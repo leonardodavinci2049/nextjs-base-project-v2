@@ -149,7 +149,6 @@ const data = {
     },
   ],
   admin: [
-
     {
       name: "Organização 1",
       url: "/dashboard/admin/organization1",
@@ -160,7 +159,7 @@ const data = {
       url: "/dashboard/admin/organization1/caixa-fechada",
       icon: Frame,
     },
-        {
+    {
       name: "Organização 3",
       url: "/dashboard/admin/organization2",
       icon: Frame,

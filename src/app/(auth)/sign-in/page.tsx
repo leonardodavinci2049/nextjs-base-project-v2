@@ -2,10 +2,12 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { auth } from "@/lib/auth/auth";
 import { LoginForm } from "./components/login-form";
 
 export default async function LoginPage() {
+  await connection();
   const session = await auth.api.getSession({
     headers: await headers(),
   });

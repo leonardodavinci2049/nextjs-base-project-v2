@@ -2,6 +2,7 @@ import { ArrowLeft, Users } from "lucide-react";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import {
   Card,
   CardContent,
@@ -20,6 +21,7 @@ import { auth } from "@/lib/auth/auth";
 import { UserRow } from "./_components/user-row";
 
 export default async function AdminPage() {
+  await connection();
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (session == null) return redirect("/auth/login");

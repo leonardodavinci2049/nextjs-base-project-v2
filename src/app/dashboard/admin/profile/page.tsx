@@ -11,6 +11,7 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { type ReactNode, Suspense } from "react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -32,6 +33,7 @@ import { SetPasswordButton } from "./_components/set-password-button";
 import { TwoFactorAuth } from "./_components/two-factor-auth";
 
 export default async function ProfilePage() {
+  await connection();
   const session = await auth.api.getSession({ headers: await headers() });
   if (session == null) return redirect("/auth/login");
 

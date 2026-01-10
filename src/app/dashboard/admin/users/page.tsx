@@ -1,7 +1,7 @@
 import { Users } from "lucide-react";
 import { headers } from "next/headers";
-
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import {
   Card,
   CardContent,
@@ -21,6 +21,7 @@ import { SiteHeaderWithBreadcrumb } from "../../_components/header/site-header-w
 import { UserRow } from "./_components/user-row";
 
 export default async function AdminPage() {
+  await connection();
   const session = await auth.api.getSession({ headers: await headers() });
 
   if (session == null) return redirect("/auth/login");
