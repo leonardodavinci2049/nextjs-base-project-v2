@@ -2,12 +2,14 @@ import { ArrowLeft } from "lucide-react";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { auth } from "@/lib/auth/auth";
 import { CreateOrganizationButton } from "./_components/create-organization-button";
 import { OrganizationSelect } from "./_components/organization-select";
 import { OrganizationTabs } from "./_components/organization-tabs";
 
 export default async function OrganizationsPage() {
+  await connection();
   const session = await auth.api.getSession({ headers: await headers() });
   if (session == null) return redirect("/auth/login");
 

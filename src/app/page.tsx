@@ -1,12 +1,11 @@
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { auth } from "@/lib/auth/auth";
 
-// Força renderização dinâmica (necessário porque usamos headers())
-export const dynamic = "force-dynamic";
-
 export default async function HomePage() {
+  await connection();
   try {
     const session = await auth.api.getSession({
       headers: await headers(),
