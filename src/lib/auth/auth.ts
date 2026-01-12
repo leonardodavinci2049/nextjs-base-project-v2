@@ -19,7 +19,16 @@ import sendEmailVerificationEmail from "@/components/emails/sendEmailVerificatio
 // Admin Roles
 import { superAdmin, user } from "./permissions/admin-roles";
 // Organization Roles
-import { admin, member, owner } from "./permissions/organization-roles";
+import {
+  cashier,
+  customer,
+  finance,
+  manager,
+  operator,
+  owner,
+  salesperson,
+  shipping,
+} from "./permissions/organization-roles";
 import { ac } from "./permissions/statements";
 
 export const auth = betterAuth({
@@ -158,8 +167,13 @@ export const auth = betterAuth({
       },
       roles: {
         owner,
-        admin,
-        member,
+        manager,
+        salesperson,
+        operator,
+        cashier,
+        finance,
+        shipping,
+        customer,
       },
     }),
 
