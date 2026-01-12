@@ -5,7 +5,19 @@ import {
   twoFactorClient,
 } from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
-import { ac, admin, member, owner, superAdmin, user } from "./permissions";
+import {
+  ac,
+  cashier,
+  customer,
+  finance,
+  manager,
+  operator,
+  owner,
+  salesperson,
+  shipping,
+  superAdmin,
+  user,
+} from "./permissions";
 
 export const authClient = createAuthClient({
   /** The base URL of the server (optional if you're using the same domain) */
@@ -15,8 +27,13 @@ export const authClient = createAuthClient({
       ac,
       roles: {
         owner,
-        admin,
-        member,
+        manager,
+        salesperson,
+        operator,
+        cashier,
+        finance,
+        shipping,
+        customer,
       },
     }),
     twoFactorClient({
