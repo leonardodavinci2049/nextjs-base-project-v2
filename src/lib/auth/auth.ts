@@ -15,11 +15,45 @@ import OrganizationInvitationEmail from "@/components/emails/organization-invita
 import ForgotPasswordEmail from "@/components/emails/reset-password";
 import sendDeleteAccountVerificationEmail from "@/components/emails/sendDeleteAccountVerificationEmail";
 import sendEmailVerificationEmail from "@/components/emails/sendEmailVerificationEmail";
-import { ac, admin, member, owner, superAdmin, user } from "./permissions";
+
+// Admin Roles
+import { superAdmin, user } from "./permissions/admin-roles";
+// Organization Roles
+import { admin, member, owner } from "./permissions/organization-roles";
+import { ac } from "./permissions/statements";
 
 export const auth = betterAuth({
   appName: "AI Sales Agent",
   secret: envs.BETTER_AUTH_SECRET,
+  database: createPool({
+    host: envs.DATABASE_HOST,
+    port: envs.DATABASE_PORT,
+    user: envs.DATABASE_USER,
+    password: envs.DATABASE_PASSWORD,
+    database: envs.DATABASE_NAME,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+  }),
+
+  databaseHooks: {
+    session: {
+      create: {
+        before: async (session) => {
+          const activeOrganization = await getActiveOrganization(
+            session.userId,
+          );
+          return {
+            data: {
+              ...session,
+              activeOrganizationId: activeOrganization?.id,
+            },
+          };
+        },
+      },
+    },
+  },
+
   user: {
     changeEmail: {
       enabled: true,
@@ -82,40 +116,16 @@ export const auth = betterAuth({
     },
   },
 
-  database: createPool({
-    host: envs.DATABASE_HOST,
-    port: envs.DATABASE_PORT,
-    user: envs.DATABASE_USER,
-    password: envs.DATABASE_PASSWORD,
-    database: envs.DATABASE_NAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-  }),
-
-  databaseHooks: {
-    session: {
-      create: {
-        before: async (session) => {
-          const activeOrganization = await getActiveOrganization(
-            session.userId,
-          );
-          return {
-            data: {
-              ...session,
-              activeOrganizationId: activeOrganization?.id,
-            },
-          };
-        },
-      },
-    },
-  },
-
   session: {
     cookieCache: {
       enabled: true,
       maxAge: 60, // 1 minute
     },
+  },
+  rateLimit: {
+    enabled: true,
+    window: 10,
+    max: 2,
   },
 
   plugins: [
@@ -129,6 +139,7 @@ export const auth = betterAuth({
       },
     }),
     organization({
+      ac,
       sendInvitationEmail: async (data) => {
         const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/api/accept-invitation/${data.id}`;
 
