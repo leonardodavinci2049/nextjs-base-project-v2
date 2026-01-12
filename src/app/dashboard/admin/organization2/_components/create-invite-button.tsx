@@ -36,7 +36,7 @@ import { authClient } from "@/lib/auth/auth-client";
 
 const createInviteSchema = z.object({
   email: z.email().min(1).trim(),
-  role: z.enum(["member", "admin"]),
+  role: z.enum(["customer", "salesperson"]),
 });
 
 type CreateInviteForm = z.infer<typeof createInviteSchema>;
@@ -48,7 +48,7 @@ export function CreateInviteButton() {
     resolver: zodResolver(createInviteSchema),
     defaultValues: {
       email: "",
-      role: "member",
+      role: "customer",
     },
   });
 

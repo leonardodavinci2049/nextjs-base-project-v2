@@ -5,10 +5,10 @@ import { auth } from "@/lib/auth/auth";
 import { AuthService } from "@/services/db/auth/auth.service";
 import { isAdmin } from "./permissions";
 
-const roleMap: Record<Role, "owner" | "admin" | "member"> = {
-  ADMIN: "admin",
-  MEMBER: "member",
-  BILLING: "member",
+const roleMap: Record<Role, "owner" | "salesperson" | "finance"> = {
+  ADMIN: "owner",
+  MEMBER: "salesperson",
+  BILLING: "finance",
 };
 
 export const addMember = async (

@@ -42,7 +42,7 @@ export function MembersTab() {
                 variant={
                   member.role === "owner"
                     ? "default"
-                    : member.role === "admin"
+                    : member.role === "salesperson"
                       ? "secondary"
                       : "outline"
                 }

@@ -39,7 +39,7 @@ export default function InviteUsersTable({
       }
       const { error } = await authClient.organization.inviteMember({
         email: user.email,
-        role: "member",
+        role: "customer",
         organizationId,
       });
 
